@@ -58,6 +58,11 @@
   }
 }
 
+@font-face {
+  font-family: PKMN;
+  src: url("src/assets/fonts/PKMN RBYGSC.ttf");
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -66,6 +71,7 @@
   body,
   #root {
     @apply bg-background text-foreground m-0 p-0 min-h-screen;
+    font-family: PKMN, sans-serif;
   }
 
   h1 {
