@@ -1,13 +1,23 @@
 import { useState } from "react";
 import { Input } from "@/components/ui";
-import { FormEvent } from "@/lib/types";
+import { FormEvent, Pokemon } from "@/lib/types";
 
-export default function PokemonInput() {
+type Props = {
+  pokemonList: Pokemon[];
+};
+
+export default function PokemonGuess({ pokemonList }: Props) {
   const [pokemon, setPokemon] = useState("");
+
+  function getRandomIntInclusive(min: number, max: number) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    alert(pokemon);
+    alert(JSON.stringify(pokemonList[getRandomIntInclusive(0, 365)]));
     setPokemon("");
   }
 
