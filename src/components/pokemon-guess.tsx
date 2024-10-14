@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui";
 import { FormEvent, Pokemon } from "@/lib/types";
 
@@ -8,28 +8,48 @@ type Props = {
 
 export default function PokemonGuess({ pokemonList }: Props) {
   const [pokemon, setPokemon] = useState("");
+  const [possibilities, setPossibilities] = useState<Pokemon[]>([]);
 
-  function getRandomIntInclusive(min: number, max: number) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+  const isPossibilitiesAvailable = pokemon && possibilities.length > 0;
+
+  useEffect(() => {
+    const possiblePokemon = pokemonList
+      .filter((poke) => poke.name.toLowerCase().includes(pokemon))
+      .slice(0, 5);
+    setPossibilities(possiblePokemon);
+  }, [pokemon]);
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    alert(JSON.stringify(pokemonList[getRandomIntInclusive(0, 365)]));
+    alert(possibilities[0].name);
+    // pokemonList[getRandomIntInclusive(0, 365)]
     setPokemon("");
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
       <Input
         name="pokemon"
         placeholder="Guess the Pokémon"
         value={pokemon}
         onChange={(e) => setPokemon(e.target.value)}
         autoComplete="off"
+        className="text-center"
       />
+      {isPossibilitiesAvailable && (
+        <ul className="flex flex-col justify-start gap-3 absolute bg-zinc-700 p-4 mt-10 z-10 rounded-b-md">
+          {possibilities.map((pokemon) => (
+            <li className="flex gap-6" key={`sprite-${pokemon.name}`}>
+              <img
+                src={pokemon.sprite}
+                alt={`sprite-${pokemon.id}`}
+                className="w-12"
+              />
+              <p className="self-center">{pokemon.name}</p>
+            </li>
+          ))}
+        </ul>
+      )}
     </form>
   );
 }
