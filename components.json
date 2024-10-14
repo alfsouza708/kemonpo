@@ -17,6 +17,7 @@
     "lib": "@/lib",
     "hooks": "@/hooks",
     "providers": "@/providers",
-    "assets": "@/assets"
+    "assets": "@/assets",
+    "api": "@/api"
   }
 }

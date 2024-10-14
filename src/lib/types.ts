@@ -2,4 +2,13 @@ type FormEvent = React.FormEvent<HTMLFormElement>;
 type MouseEvent = React.MouseEvent<HTMLButtonElement>;
 type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
 
-export type { ChangeEvent, FormEvent, MouseEvent };
+type Pokemon = {
+  id: number;
+  name: string;
+  height: number;
+  weight: number;
+  sprite: string;
+  typing: string[];
+};
+
+export type { ChangeEvent, FormEvent, MouseEvent, Pokemon };

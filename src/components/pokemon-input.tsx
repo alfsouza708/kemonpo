@@ -18,6 +18,7 @@ export default function PokemonInput() {
         placeholder="Guess the Pokémon"
         value={pokemon}
         onChange={(e) => setPokemon(e.target.value)}
+        autoComplete="off"
       />
     </form>
   );
