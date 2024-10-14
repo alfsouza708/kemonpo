@@ -7,7 +7,7 @@ type Props = {
 };
 
 export default function PokemonGuess({ pokemonList }: Props) {
-  const [pokemon, setPokemon] = useState("");
+  const [pokemon, setPokemon] = useState<string>("");
   const [possibilities, setPossibilities] = useState<Pokemon[]>([]);
 
   const isPossibilitiesAvailable = pokemon && possibilities.length > 0;
@@ -21,7 +21,7 @@ export default function PokemonGuess({ pokemonList }: Props) {
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    alert(possibilities[0].name);
+    console.log();
     // pokemonList[getRandomIntInclusive(0, 365)]
     setPokemon("");
   }
@@ -37,9 +37,13 @@ export default function PokemonGuess({ pokemonList }: Props) {
         className="text-center"
       />
       {isPossibilitiesAvailable && (
-        <ul className="flex flex-col justify-start gap-3 absolute bg-zinc-700 p-4 mt-10 z-10 rounded-b-md">
-          {possibilities.map((pokemon) => (
-            <li className="flex gap-6" key={`sprite-${pokemon.name}`}>
+        <ul className="flex flex-col justify-start gap-3 absolute bg-zinc-800 p-4 w-64 mt-11 ml-6 z-10 rounded-b-md">
+          {possibilities.map((pokemon, i) => (
+            <li
+              id={`poke-${i}`}
+              key={`sprite-${pokemon.name}`}
+              className="flex gap-6"
+            >
               <img
                 src={pokemon.sprite}
                 alt={`sprite-${pokemon.id}`}
