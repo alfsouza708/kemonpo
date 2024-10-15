@@ -24,11 +24,7 @@ export default function App() {
 
       <Separator />
 
-      <section className="p-8 flex flex-col justify-center items-center gap-8 w-full">
-        <h1 className="text-xl md:text-2xl">Who's that Pokémon?</h1>
-
-        <PokemonGuess pokemonList={pokemonList} />
-      </section>
+      <PokemonGuess pokemonList={pokemonList} />
     </div>
   );
 }

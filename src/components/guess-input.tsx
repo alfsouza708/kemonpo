@@ -16,9 +16,10 @@ import { Pokemon } from "@/lib/types";
 
 type Props = {
   pokemonList: Pokemon[];
+  updateAvailable: (arg0: string) => void;
 };
 
-export default function GuessInput({ pokemonList }: Props) {
+export default function GuessInput({ pokemonList, updateAvailable }: Props) {
   const [pokemon, setPokemon] = useState<string>("");
   const [possibilities, setPossibilities] = useState<Pokemon[]>([]);
   const [open, setOpen] = useState<boolean>(false);
@@ -27,11 +28,12 @@ export default function GuessInput({ pokemonList }: Props) {
     const possiblePokemon = pokemonList
       .filter((poke) => poke.name.toLowerCase().includes(pokemon.toLowerCase()))
       .slice(0, 5);
+
     setPossibilities(possiblePokemon);
   }, [pokemon]);
 
   function handleSubmit(pokemon: string) {
-    console.log(pokemon);
+    updateAvailable(pokemon);
   }
 
   // https://github.com/shadcn-ui/ui/issues/173
@@ -54,7 +56,7 @@ export default function GuessInput({ pokemonList }: Props) {
             >
               <Input
                 placeholder="Guess the Pokémon..."
-                className="w-full text-center"
+                className="w-full text-center bg-zinc-950"
               />
             </CommandPrimitive.Input>
           </PopoverPrimitive.Anchor>
