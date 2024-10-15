@@ -22,7 +22,6 @@ export default function GuessInput({ pokemonList }: Props) {
   const [pokemon, setPokemon] = useState<string>("");
   const [possibilities, setPossibilities] = useState<Pokemon[]>([]);
   const [open, setOpen] = useState<boolean>(false);
-  const [value, setValue] = useState<string>("");
 
   useEffect(() => {
     const possiblePokemon = pokemonList
@@ -30,6 +29,10 @@ export default function GuessInput({ pokemonList }: Props) {
       .slice(0, 5);
     setPossibilities(possiblePokemon);
   }, [pokemon]);
+
+  function handleSubmit(pokemon: string) {
+    console.log(pokemon);
+  }
 
   // https://github.com/shadcn-ui/ui/issues/173
 
@@ -43,10 +46,9 @@ export default function GuessInput({ pokemonList }: Props) {
               value={pokemon}
               onValueChange={setPokemon}
               onKeyDown={(e) => setOpen(e.key !== "Escape")}
-              onFocus={() => setOpen(true)}
               onBlur={(e) => {
                 if (!e.relatedTarget?.hasAttribute("cmdk-list")) {
-                  setPokemon(value ? pokemon : "");
+                  setPokemon("");
                 }
               }}
             >
@@ -77,10 +79,10 @@ export default function GuessInput({ pokemonList }: Props) {
                     key={pokemon.id}
                     value={pokemon.name}
                     onMouseDown={(e) => e.preventDefault()}
-                    onSelect={(currentValue) => {
-                      setValue(currentValue === value ? "" : currentValue);
-                      setPokemon(pokemon.name);
+                    onSelect={() => {
                       setOpen(false);
+                      setPokemon("");
+                      handleSubmit(pokemon.name);
                     }}
                     className="flex gap-5"
                   >
