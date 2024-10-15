@@ -1,6 +1,18 @@
 import { useEffect, useState } from "react";
-import { Input } from "@/components/ui";
-import { FormEvent, Pokemon } from "@/lib/types";
+
+import {
+  Command,
+  CommandGroup,
+  CommandItem,
+  CommandList,
+  Input,
+  Popover,
+  PopoverContent,
+} from "@/components/ui";
+import * as PopoverPrimitive from "@radix-ui/react-popover";
+import { Command as CommandPrimitive } from "cmdk";
+
+import { Pokemon } from "@/lib/types";
 
 type Props = {
   pokemonList: Pokemon[];
@@ -9,8 +21,8 @@ type Props = {
 export default function PokemonGuess({ pokemonList }: Props) {
   const [pokemon, setPokemon] = useState<string>("");
   const [possibilities, setPossibilities] = useState<Pokemon[]>([]);
-
-  const isPossibilitiesAvailable = pokemon && possibilities.length > 0;
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
 
   useEffect(() => {
     const possiblePokemon = pokemonList
@@ -19,41 +31,74 @@ export default function PokemonGuess({ pokemonList }: Props) {
     setPossibilities(possiblePokemon);
   }, [pokemon]);
 
-  function handleSubmit(event: FormEvent) {
-    event.preventDefault();
-    console.log();
-    // pokemonList[getRandomIntInclusive(0, 365)]
-    setPokemon("");
-  }
+  // bugs:
+  // - uppercase on input not triggering popover
+  // - after submitting, removing characters one by one dont trigger popover
 
   return (
-    <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-      <Input
-        name="pokemon"
-        placeholder="Guess the Pokémon"
-        value={pokemon}
-        onChange={(e) => setPokemon(e.target.value)}
-        autoComplete="off"
-        className="text-center"
-      />
-      {isPossibilitiesAvailable && (
-        <ul className="flex flex-col justify-start gap-3 absolute bg-zinc-800 p-4 w-64 mt-11 ml-6 z-10 rounded-b-md">
-          {possibilities.map((pokemon, i) => (
-            <li
-              id={`poke-${i}`}
-              key={`sprite-${pokemon.name}`}
-              className="flex gap-6"
+    <div className="flex items-center w-64 lg:w-80">
+      <Popover open={open} onOpenChange={setOpen}>
+        <Command>
+          <PopoverPrimitive.Anchor asChild>
+            <CommandPrimitive.Input
+              asChild
+              value={pokemon}
+              onValueChange={setPokemon}
+              onKeyDown={(e) => setOpen(e.key !== "Escape")}
+              onFocus={() => setOpen(true)}
+              onBlur={(e) => {
+                if (!e.relatedTarget?.hasAttribute("cmdk-list")) {
+                  setPokemon(value ? pokemon : "");
+                }
+              }}
             >
-              <img
-                src={pokemon.sprite}
-                alt={`sprite-${pokemon.id}`}
-                className="w-12"
+              <Input
+                placeholder="Guess the Pokémon..."
+                className="w-full text-center"
               />
-              <p className="self-center">{pokemon.name}</p>
-            </li>
-          ))}
-        </ul>
-      )}
-    </form>
+            </CommandPrimitive.Input>
+          </PopoverPrimitive.Anchor>
+          {!open && <CommandList aria-hidden="true" className="hidden" />}
+          <PopoverContent
+            asChild
+            onOpenAutoFocus={(e) => e.preventDefault()}
+            onInteractOutside={(e) => {
+              if (
+                e.target instanceof Element &&
+                e.target.hasAttribute("cmdk-input")
+              ) {
+                e.preventDefault();
+              }
+            }}
+            className="w-[--radix-popover-trigger-width] p-0 max-h-96"
+          >
+            <CommandList>
+              <CommandGroup>
+                {possibilities.map((pokemon) => (
+                  <CommandItem
+                    key={pokemon.id}
+                    value={pokemon.name.toLowerCase()}
+                    onMouseDown={(e) => e.preventDefault()}
+                    onSelect={(currentValue) => {
+                      setValue(currentValue === value ? "" : currentValue);
+                      setPokemon(pokemon.name);
+                      setOpen(false);
+                    }}
+                    className="flex gap-5"
+                  >
+                    <img
+                      src={pokemon.sprite}
+                      alt={`sprite-${pokemon.id}`}
+                      className="w-12"
+                    />
+                    <p className="self-center">{pokemon.name}</p>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </CommandList>
+          </PopoverContent>
+        </Command>
+      </Popover>
+    </div>
   );
 }

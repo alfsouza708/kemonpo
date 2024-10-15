@@ -3,7 +3,7 @@ type MouseEvent = React.MouseEvent<HTMLButtonElement>;
 type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
 
 type Pokemon = {
-  id: number;
+  id: string;
   name: string;
   height: number;
   weight: number;
