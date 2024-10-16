@@ -60,7 +60,7 @@
 
 @font-face {
   font-family: PKMN;
-  src: url("src/assets/fonts/PKMN RBYGSC.ttf");
+  src: url("@fontPKMN");
 }
 
 @layer base {

@@ -7,6 +7,12 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "@fontPKMN": path.resolve(
+        __dirname,
+        "./src/assets/fonts/PKMN RBYGSC.ttf"
+      ),
+      "@arrowDown": path.resolve(__dirname, "./src/assets/arrow-down.png"),
+      "@arrowUp": path.resolve(__dirname, "./src/assets/arrow-up.png"),
     },
   },
 });

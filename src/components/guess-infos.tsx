@@ -39,10 +39,10 @@ export default function GuessInfos({ infos, pokemon }: Props) {
         className={cn(
           infos.height === "equal" ? "bg-emerald-400" : "bg-red-600",
           infos.height === "lesserThan"
-            ? ` before:bg-zinc-800 before:flex before:justify-center before:items-center before:pt-[2px] before:content-[url(src/assets/arrow-down.png)] before:h-5 before:w-5 before:absolute before:top-0 before:right-14 before:rounded-full`
+            ? ` before:bg-zinc-800 before:flex before:justify-center before:items-center before:pt-[2px] before:content-[url(@arrowDown)] before:h-5 before:w-5 before:absolute before:top-0 before:right-14 before:rounded-full`
             : ``,
           infos.height === "greaterThan"
-            ? `before:bg-zinc-800 before:flex before:justify-center before:items-center before:pt-[2px] before:content-[url(src/assets/arrow-up.png)] before:h-5 before:w-5 before:absolute before:top-0 before:right-14 before:rounded-full`
+            ? `before:bg-zinc-800 before:flex before:justify-center before:items-center before:pt-[2px] before:content-[url(@arrowUp)] before:h-5 before:w-5 before:absolute before:top-0 before:right-14 before:rounded-full`
             : ``,
           "flex flex-col justify-center items-center rounded-full w-14 h-14"
         )}
@@ -54,10 +54,10 @@ export default function GuessInfos({ infos, pokemon }: Props) {
         className={cn(
           infos.weight === "equal" ? "bg-emerald-400" : "bg-red-600",
           infos.weight === "lesserThan"
-            ? ` before:bg-zinc-800 before:flex before:justify-center before:items-center before:pt-[2px] before:content-[url(src/assets/arrow-down.png)] before:h-5 before:w-5 before:absolute before:top-0 before:right-0 before:rounded-full`
+            ? ` before:bg-zinc-800 before:flex before:justify-center before:items-center before:pt-[2px] before:content-[url(@arrowDown)] before:h-5 before:w-5 before:absolute before:top-0 before:right-0 before:rounded-full`
             : ``,
           infos.weight === "greaterThan"
-            ? `before:bg-zinc-800 before:flex before:justify-center before:items-center before:pt-[2px] before:content-[url(src/assets/arrow-up.png)] before:h-5 before:w-5 before:absolute before:top-0 before:right-0 before:rounded-full`
+            ? `before:bg-zinc-800 before:flex before:justify-center before:items-center before:pt-[2px] before:content-[url(@arrowUp)] before:h-5 before:w-5 before:absolute before:top-0 before:right-0 before:rounded-full`
             : ``,
           "flex flex-col justify-center items-center rounded-full w-14 h-14"
         )}
