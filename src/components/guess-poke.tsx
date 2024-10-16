@@ -15,21 +15,25 @@ export default function GuessPoke({ chosen, guessed }: Props) {
   };
 
   function checkSecondType(guessed: string[], chosen: string[]): Typing {
+    // 1 Type Correct
     if (guessed[0] === chosen[0]) {
+      // Guessed Pokemon has 2 types
       if (guessed.length > 1) {
+        // Chosen Pokemon has 2 types
         if (chosen.length > 1) {
-          return chosen[1] === guessed[1] ? "correct" : "incorrect";
+          // Compare Guessed Pokemon Type 2 and Chosen Pokemon Type 2
+          return guessed[1] === chosen[1] ? "correct" : "incorrect";
         }
+        // Compare Guessed Pokemon Type 2 and Chosen Pokemon Type 1
         return guessed[1] === chosen[0] ? "correct" : "incorrect";
       }
-
+      // Guessed Pokemon has 1 type, Chosen Pokemon has 2 types
       if (chosen.length > 1) {
-        return chosen[1] === guessed[1] ? "correct" : "incorrect";
+        // Compare Guessed Pokemon Type 1 and Chosen Pokemon Type 2
+        return guessed[0] === chosen[1] ? "correct" : "incorrect";
       }
 
-      if (guessed[0] === chosen[0]) return "correct";
-
-      return "incorrect";
+      return guessed[0] === chosen[0] ? "correct" : "incorrect";
     }
 
     return "unavailable";
