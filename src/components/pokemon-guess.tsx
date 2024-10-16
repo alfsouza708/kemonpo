@@ -22,7 +22,7 @@ export default function PokemonGuess({ pokemonList }: Props) {
 
     if (selectedPokemon === chosen) {
       // dialog to show winner pokemon
-      alert("ALL I DO IS WIN WIN WIN");
+      alert("Jogou duro");
       newGame();
       return;
     }
@@ -42,14 +42,12 @@ export default function PokemonGuess({ pokemonList }: Props) {
   }
 
   return (
-    <section className="p-5 flex flex-col justify-center items-center gap-8 w-full">
+    <section className="p-1 md:p-5 flex flex-col justify-center items-center gap-8 w-full">
       <h1 className="text-xl md:text-2xl">Who's that Pokémon?</h1>
 
       <GuessInput pokemonList={available} updateAvailable={updateAvailable} />
 
       <GuessHistory pokemonList={history} chosen={chosen} />
-
-      <p>{chosen.name}</p>
     </section>
   );
 }
