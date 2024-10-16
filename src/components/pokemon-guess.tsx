@@ -14,6 +14,7 @@ export default function PokemonGuess({ pokemonList }: Props) {
   const [chosen, setChosen] = useState<Pokemon>(getRandomPokemon(pokemonList));
   const [available, setAvailable] = useState<Pokemon[]>(pokemonList);
   const [history, setHistory] = useState<Pokemon[]>([]);
+  // const [open, setOpen] = useState<boolean>(false)
 
   function updateAvailable(name: string) {
     const selectedPokemon = available?.find(
@@ -48,6 +49,8 @@ export default function PokemonGuess({ pokemonList }: Props) {
       <GuessInput pokemonList={available} updateAvailable={updateAvailable} />
 
       <GuessHistory pokemonList={history} chosen={chosen} />
+
+      <p>{chosen.name}</p>
     </section>
   );
 }
