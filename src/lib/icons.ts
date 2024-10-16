@@ -19,7 +19,7 @@ import {
   Skull,
 } from "lucide-react";
 
-const types = {
+const allTypes = {
   bug: Bug,
   dark: Moon,
   dragon: Origami,
@@ -40,4 +40,4 @@ const types = {
   water: Droplet,
 };
 
-export { types };
+export { allTypes };

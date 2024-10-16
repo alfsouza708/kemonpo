@@ -4,7 +4,7 @@ type Pokemon = {
   height: number;
   weight: number;
   sprite: string;
-  typing: string[];
+  typing: PossibleTypes[];
 };
 
 type Typing = "correct" | "incorrect" | "unavailable";
@@ -16,4 +16,24 @@ type Infos = {
   weight: "equal" | "greaterThan" | "lesserThan";
 };
 
-export type { Pokemon, Infos, Typing };
+type PossibleTypes =
+  | "bug"
+  | "dark"
+  | "dragon"
+  | "fairy"
+  | "fighting"
+  | "fire"
+  | "flying"
+  | "ghost"
+  | "grass"
+  | "ground"
+  | "electric"
+  | "ice"
+  | "normal"
+  | "poison"
+  | "psychic"
+  | "rock"
+  | "steel"
+  | "water";
+
+export type { Pokemon, Infos, Typing, PossibleTypes };

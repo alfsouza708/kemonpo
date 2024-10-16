@@ -1,6 +1,6 @@
 import { Infos, Pokemon } from "@/lib/types";
 import { cn } from "@/lib/utils";
-import { Activity } from "lucide-react";
+import TypeImg from "@/components/guess-type-img";
 
 type Props = {
   pokemon: Pokemon;
@@ -16,7 +16,7 @@ export default function GuessInfos({ infos, pokemon }: Props) {
           "flex flex-col justify-center items-center rounded-full w-14 h-14"
         )}
       >
-        <Activity className="mb-1" />
+        <TypeImg type={pokemon.typing[0]} />
         <p className="text-[6px]">{pokemon.typing[0].toUpperCase()}</p>
       </div>
       <div
@@ -26,7 +26,11 @@ export default function GuessInfos({ infos, pokemon }: Props) {
           "flex flex-col justify-center items-center rounded-full w-14 h-14"
         )}
       >
-        <Activity className="mb-1" />
+        <TypeImg
+          type={
+            pokemon.typing.length > 1 ? pokemon.typing[1] : pokemon.typing[0]
+          }
+        />
         <p className="text-[6px]">
           {pokemon.typing[1]?.toUpperCase() ?? pokemon.typing[0]?.toUpperCase()}
         </p>
