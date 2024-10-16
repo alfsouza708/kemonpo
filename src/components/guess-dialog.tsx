@@ -28,7 +28,7 @@ export default function GuessDialog({ open, setOpen, chosen }: Props) {
           <div className="flex flex-col justify-center items-center gap-8 mb-6">
             <p>Gotcha!</p>
             <img
-              className="w-24 h-24 bg-black rounded-full"
+              className="w-48 h-48 bg-black rounded-full"
               src={chosen.sprite}
               alt="sprite"
             />
