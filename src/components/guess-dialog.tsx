@@ -8,6 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui";
 import { Pokemon } from "@/lib/types";
+import AudioPath from "@/assets/captured.mp3";
 
 type Props = {
   open: boolean;
@@ -32,7 +33,7 @@ export default function GuessDialog({ open, setOpen, chosen }: Props) {
               alt="sprite"
             />
             <p>{chosen.name} captured!</p>
-            <audio src="src/assets/captured.mp3" autoPlay />
+            <audio src={AudioPath} autoPlay />
           </div>
           <DialogFooter>
             <Button onClick={() => setOpen(false)}>New Game?</Button>
