@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 const GET_POKEMON = gql`
-  query samplePokeAPIquery {
+  query getAllPokemon {
     pokemon_v2_pokemon(limit: 386) {
       id
       name

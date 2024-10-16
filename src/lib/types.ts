@@ -1,9 +1,5 @@
-type FormEvent = React.FormEvent<HTMLFormElement>;
-type MouseEvent = React.MouseEvent<HTMLButtonElement>;
-type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
-
 type Pokemon = {
-  id: string;
+  id: number;
   name: string;
   height: number;
   weight: number;
@@ -11,4 +7,13 @@ type Pokemon = {
   typing: string[];
 };
 
-export type { ChangeEvent, FormEvent, MouseEvent, Pokemon };
+type Typing = "correct" | "incorrect" | "unavailable";
+
+type Infos = {
+  type1: Exclude<Typing, "unavailable">;
+  type2: Typing;
+  height: "equal" | "greaterThan" | "lesserThan";
+  weight: "equal" | "greaterThan" | "lesserThan";
+};
+
+export type { Pokemon, Infos, Typing };
