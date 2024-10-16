@@ -22,7 +22,7 @@ export default function GuessInfos({ infos, pokemon }: Props) {
       <div
         className={cn(
           infos.type2 === "correct" ? "bg-emerald-400" : "bg-red-600",
-          infos.type2 === "unavailable" ? "bg-zinc-800" : "",
+          infos.type2 === "unavailable" ? "bg-zinc-800 opacity-30" : "",
           "flex flex-col justify-center items-center rounded-full w-14 h-14"
         )}
       >
