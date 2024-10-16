@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import GuessInput from "@/components/guess-input";
 import GuessHistory from "@/components/guess-history";
+import GuessDialog from "@/components/guess-dialog";
 
 import { Pokemon } from "@/lib/types";
 import { getRandomPokemon } from "@/lib/utils";
@@ -14,7 +15,11 @@ export default function PokemonGuess({ pokemonList }: Props) {
   const [chosen, setChosen] = useState<Pokemon>(getRandomPokemon(pokemonList));
   const [available, setAvailable] = useState<Pokemon[]>(pokemonList);
   const [history, setHistory] = useState<Pokemon[]>([]);
-  // const [open, setOpen] = useState<boolean>(false)
+  const [open, setOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!open) newGame();
+  }, [open]);
 
   function updateAvailable(name: string) {
     const selectedPokemon = available?.find(
@@ -22,9 +27,7 @@ export default function PokemonGuess({ pokemonList }: Props) {
     );
 
     if (selectedPokemon === chosen) {
-      // dialog to show winner pokemon
-      alert("Jogou duro");
-      newGame();
+      setOpen(true);
       return;
     }
 
@@ -49,6 +52,8 @@ export default function PokemonGuess({ pokemonList }: Props) {
       <GuessInput pokemonList={available} updateAvailable={updateAvailable} />
 
       <GuessHistory pokemonList={history} chosen={chosen} />
+
+      <GuessDialog open={open} setOpen={setOpen} chosen={chosen} />
 
       <p>{chosen.name}</p>
     </section>
