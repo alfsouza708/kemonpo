@@ -72,7 +72,7 @@ export default function GuessInput({ pokemonList, updateAvailable }: Props) {
                 e.preventDefault();
               }
             }}
-            className="w-[--radix-popover-trigger-width] p-0 max-h-96"
+            className="w-[--radix-popover-trigger-width] p-0 h-h-screen md:max-h-96"
           >
             <CommandList>
               <CommandGroup>
