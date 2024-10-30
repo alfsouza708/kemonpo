@@ -19,7 +19,7 @@ export default function App() {
   //   return <h1 className="p-8 flex justify-center items-center">Loading...</h1>;
   // if (error) return <h1 className="p-8">{`Error: ${error.message}`}</h1>;
 
-  // const pokemonList = data.pokemon_v2_pokemon.map((pokemon: any) =>
+  // const pokemonList = data.pokemon_v2_pokemon.map((pokemon: unknown) =>
   //   formatPokemonJSON(pokemon)
   // );
 
