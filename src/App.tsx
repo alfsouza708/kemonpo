@@ -1,6 +1,7 @@
+import Header from "@/components/Header";
+import Settings from "@/components/Settings";
 import { Separator } from "@/components/ui";
 
-import Header from "@/components/header";
 import PokemonGuess from "@/components/pokemon-guess/PokemonGuess";
 
 import { pokemonList } from "@/lib/data";
@@ -25,9 +26,13 @@ export default function App() {
 
   return (
     <div className="flex flex-col justify-start items-center h-screen bg-zinc">
-      <Header />
+      <div className="top-0 sticky w-full z-10 bg-background">
+        <Settings />
 
-      <Separator />
+        <Separator />
+      </div>
+
+      <Header />
 
       <PokemonGuess pokemonList={pokemonList} />
     </div>

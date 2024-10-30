@@ -50,7 +50,7 @@ export default function GuessedPokemon({ chosen, guessed }: Props) {
       <img
         src={guessed.sprite}
         alt={`${guessed.name}`}
-        className="h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-24"
+        className="h-16 w-16 sm:h-20 sm:w-20"
       />
       <p className="text-[8px] sm:text-sm w-32 md:w-48">{guessed.name}</p>
 

@@ -25,6 +25,7 @@ export default function GuessDialog({ open, setOpen, chosen }: Props) {
             <DialogTitle></DialogTitle>
             <DialogDescription></DialogDescription>
           </DialogHeader>
+
           <div className="flex flex-col justify-center items-center gap-8 mb-6">
             <p>Gotcha!</p>
             <img
@@ -35,6 +36,7 @@ export default function GuessDialog({ open, setOpen, chosen }: Props) {
             <p>{chosen.name} captured!</p>
             <audio src={AudioPath} autoPlay />
           </div>
+
           <DialogFooter>
             <Button onClick={() => setOpen(false)}>New Game?</Button>
           </DialogFooter>

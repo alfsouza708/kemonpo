@@ -4,6 +4,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 import App from "./App.tsx";
 import "./index.css";
+import { ThemeProvider } from "@/providers/theme-provider.tsx";
 
 const client = new ApolloClient({
   uri: "https://beta.pokeapi.co/graphql/v1beta/",
@@ -13,7 +14,9 @@ const client = new ApolloClient({
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ApolloProvider client={client}>
-      <App />
+      <ThemeProvider defaultTheme="dark" storageKey="game-theme">
+        <App />
+      </ThemeProvider>
     </ApolloProvider>
   </StrictMode>
 );

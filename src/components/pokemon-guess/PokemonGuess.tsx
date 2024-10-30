@@ -15,7 +15,7 @@ export default function PokemonGuess({ pokemonList }: Props) {
   const [chosen, setChosen] = useState<Pokemon>(getRandomPokemon(pokemonList));
   const [available, setAvailable] = useState<Pokemon[]>(pokemonList);
   const [history, setHistory] = useState<Pokemon[]>([]);
-  const [open, setOpen] = useState<boolean>(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (!open) newGame();
