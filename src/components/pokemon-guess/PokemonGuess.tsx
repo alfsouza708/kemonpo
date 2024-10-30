@@ -5,7 +5,7 @@ import History from "@/components/pokemon-guess/History";
 import Dialog from "@/components/pokemon-guess/GuessDialog";
 
 import { Pokemon } from "@/lib/types";
-import { getRandomPokemon } from "@/lib/utils";
+import { getRandomPokemon } from "@/utils/poke-guess";
 
 type Props = {
   pokemonList: Pokemon[];
