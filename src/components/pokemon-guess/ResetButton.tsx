@@ -18,7 +18,12 @@ export default function ResetButton() {
 
   return (
     <>
-      <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
+      <Button
+        variant="outline"
+        size="icon"
+        className="bg-popover"
+        onClick={() => setOpen(true)}
+      >
         <Repeat2 className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
       </Button>
 
