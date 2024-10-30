@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui";
-import { Pokemon } from "@/lib/types";
+import type { Pokemon } from "@/lib/types";
 import AudioPath from "@/assets/captured.mp3";
 
 type Props = {

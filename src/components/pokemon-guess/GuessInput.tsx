@@ -12,7 +12,7 @@ import {
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 import { Command as CommandPrimitive } from "cmdk";
 
-import { Pokemon } from "@/lib/types";
+import type { Pokemon } from "@/lib/types";
 
 type Props = {
   pokemonList: Pokemon[];

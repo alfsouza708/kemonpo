@@ -1,7 +1,7 @@
 import { Separator } from "@/components/ui";
 
 import Header from "@/components/header";
-import PokemonGuess from "@/components/pokemon-guess";
+import PokemonGuess from "@/components/pokemon-guess/PokemonGuess";
 
 import { pokemonList } from "@/lib/data";
 

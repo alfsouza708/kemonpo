@@ -1,6 +1,7 @@
-import { Infos, Pokemon } from "@/lib/types";
+import TypeImg from "@/components/pokemon-guess/TypeImg";
+
 import { cn } from "@/lib/utils";
-import TypeImg from "@/components/guess-type-img";
+import type { Infos, Pokemon } from "@/lib/types";
 
 type Props = {
   pokemon: Pokemon;

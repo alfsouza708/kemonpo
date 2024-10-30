@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import GuessInput from "@/components/guess-input";
-import GuessHistory from "@/components/guess-history";
-import GuessDialog from "@/components/guess-dialog";
+import Input from "@/components/pokemon-guess/GuessInput";
+import History from "@/components/pokemon-guess/History";
+import Dialog from "@/components/pokemon-guess/GuessDialog";
 
 import { Pokemon } from "@/lib/types";
 import { getRandomPokemon } from "@/lib/utils";
@@ -19,6 +19,7 @@ export default function PokemonGuess({ pokemonList }: Props) {
 
   useEffect(() => {
     if (!open) newGame();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   function updateAvailable(name: string) {
@@ -49,11 +50,11 @@ export default function PokemonGuess({ pokemonList }: Props) {
     <section className="py-6 px-1 md:p-5 flex flex-col justify-center items-center gap-8 w-full">
       <h1 className="text-xl md:text-2xl">Who's that Pokémon?</h1>
 
-      <GuessInput pokemonList={available} updateAvailable={updateAvailable} />
+      <Input pokemonList={available} updateAvailable={updateAvailable} />
 
-      <GuessHistory pokemonList={history} chosen={chosen} />
+      <History pokemonList={history} chosen={chosen} />
 
-      <GuessDialog open={open} chosen={chosen} setOpen={setOpen} />
+      <Dialog open={open} chosen={chosen} setOpen={setOpen} />
     </section>
   );
 }

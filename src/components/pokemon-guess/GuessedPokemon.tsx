@@ -1,12 +1,12 @@
-import { Pokemon, Infos, Typing } from "@/lib/types";
-import GuessInfos from "@/components/guess-infos";
+import type { Pokemon, Infos, Typing } from "@/lib/types";
+import GuessInfos from "@/components/pokemon-guess/GuessInfos";
 
 type Props = {
   guessed: Pokemon;
   chosen: Pokemon;
 };
 
-export default function GuessPoke({ chosen, guessed }: Props) {
+export default function GuessedPokemon({ chosen, guessed }: Props) {
   const infos: Infos = {
     type1: chosen.typing[0] === guessed.typing[0] ? "correct" : "incorrect",
     type2: checkSecondType(guessed.typing, chosen.typing),
