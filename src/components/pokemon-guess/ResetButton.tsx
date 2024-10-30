@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   Button,
   Dialog,
@@ -6,15 +8,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui";
+import { useGuessStore } from "@/store/use-guess-store";
 import { Repeat2 } from "lucide-react";
-import { useState } from "react";
 
 export default function ResetButton() {
   const [open, setOpen] = useState(false);
-
-  function resetGame() {
-    alert("work work");
-  }
+  const { newGame } = useGuessStore();
 
   return (
     <>
@@ -35,7 +34,14 @@ export default function ResetButton() {
               <DialogDescription></DialogDescription>
             </DialogHeader>
 
-            <Button onClick={() => resetGame()}>New Guess?</Button>
+            <Button
+              onClick={() => {
+                setOpen(false);
+                newGame();
+              }}
+            >
+              New Guess?
+            </Button>
           </DialogContent>
         )}
       </Dialog>

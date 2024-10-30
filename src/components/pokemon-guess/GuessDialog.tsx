@@ -7,18 +7,24 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui";
-import type { Pokemon } from "@/lib/types";
 import AudioPath from "@/assets/captured.mp3";
+import { useGuessStore } from "@/store/use-guess-store";
 
 type Props = {
   open: boolean;
-  chosen: Pokemon;
   setOpen: (arg0: boolean) => void;
 };
 
-export default function GuessDialog({ open, setOpen, chosen }: Props) {
+export default function GuessDialog({ open, setOpen }: Props) {
+  const { chosen, newGame } = useGuessStore();
+
+  function handleClose() {
+    setOpen(false);
+    newGame();
+  }
+
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleClose}>
       {open && (
         <DialogContent>
           <DialogHeader>
@@ -38,7 +44,7 @@ export default function GuessDialog({ open, setOpen, chosen }: Props) {
           </div>
 
           <DialogFooter>
-            <Button onClick={() => setOpen(false)}>New Game?</Button>
+            <Button onClick={handleClose}>New Game?</Button>
           </DialogFooter>
         </DialogContent>
       )}

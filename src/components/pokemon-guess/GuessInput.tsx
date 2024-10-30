@@ -13,27 +13,29 @@ import * as PopoverPrimitive from "@radix-ui/react-popover";
 import { Command as CommandPrimitive } from "cmdk";
 
 import type { Pokemon } from "@/lib/types";
+import { useGuessStore } from "@/store/use-guess-store";
 
 type Props = {
-  pokemonList: Pokemon[];
-  updateAvailable: (arg0: string) => void;
+  updateCurrentAvailable: (arg0: string) => void;
 };
 
-export default function GuessInput({ pokemonList, updateAvailable }: Props) {
+export default function GuessInput({ updateCurrentAvailable }: Props) {
   const [pokemon, setPokemon] = useState<string>("");
   const [possibilities, setPossibilities] = useState<Pokemon[]>([]);
   const [open, setOpen] = useState<boolean>(false);
 
+  const { available } = useGuessStore();
+
   useEffect(() => {
-    const possiblePokemon = pokemonList
+    const possiblePokemon = available
       .filter((poke) => poke.name.toLowerCase().includes(pokemon.toLowerCase()))
       .slice(0, 5);
 
     setPossibilities(possiblePokemon);
-  }, [pokemon, pokemonList]);
+  }, [pokemon, available]);
 
   function handleSubmit(pokemon: string) {
-    updateAvailable(pokemon);
+    updateCurrentAvailable(pokemon);
   }
 
   // https://github.com/shadcn-ui/ui/issues/173

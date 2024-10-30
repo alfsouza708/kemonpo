@@ -1,18 +1,13 @@
-import type { Pokemon } from "@/lib/types";
 import GuessedPokemon from "@/components/pokemon-guess/GuessedPokemon";
+import { useGuessStore } from "@/store/use-guess-store";
 
-type Props = {
-  pokemonList: Pokemon[];
-  chosen: Pokemon;
-};
+export default function History() {
+  const { history } = useGuessStore();
 
-export default function History({ pokemonList, chosen }: Props) {
   return (
     <div className="flex flex-col gap-4 md:gap-6">
-      {pokemonList.length > 0 &&
-        pokemonList.map((poke, i) => (
-          <GuessedPokemon key={i} chosen={chosen} guessed={poke} />
-        ))}
+      {history.length > 0 &&
+        history.map((poke, i) => <GuessedPokemon key={i} guessed={poke} />)}
     </div>
   );
 }
