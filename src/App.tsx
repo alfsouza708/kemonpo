@@ -3,8 +3,6 @@ import Settings from "@/components/Settings";
 
 import PokemonGuess from "@/components/pokemon-guess/PokemonGuess";
 
-import { pokemonList } from "@/lib/data";
-
 // import { useQuery } from "@apollo/client";
 
 // import { GET_POKEMON } from "@/api/queries";
@@ -29,7 +27,7 @@ export default function App() {
 
       <Header />
 
-      <PokemonGuess pokemonList={pokemonList} />
+      <PokemonGuess />
     </div>
   );
 }

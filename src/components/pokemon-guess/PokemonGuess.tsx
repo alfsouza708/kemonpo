@@ -4,17 +4,18 @@ import Input from "@/components/pokemon-guess/GuessInput";
 import History from "@/components/pokemon-guess/History";
 import Dialog from "@/components/pokemon-guess/GuessDialog";
 
-import { Pokemon } from "@/lib/types";
-import { getRandomPokemon } from "@/utils/poke-guess";
+import { useGuessStore } from "@/store/use-guess-store";
 
-type Props = {
-  pokemonList: Pokemon[];
-};
+export default function PokemonGuess() {
+  const {
+    available,
+    chosen,
+    history,
+    updateAvailable,
+    updateHistory,
+    newGame,
+  } = useGuessStore();
 
-export default function PokemonGuess({ pokemonList }: Props) {
-  const [chosen, setChosen] = useState<Pokemon>(getRandomPokemon(pokemonList));
-  const [available, setAvailable] = useState<Pokemon[]>(pokemonList);
-  const [history, setHistory] = useState<Pokemon[]>([]);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export default function PokemonGuess({ pokemonList }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
-  function updateAvailable(name: string) {
+  function updateCurrentAvailable(name: string) {
     const selectedPokemon = available?.find(
       (pokemon) => pokemon.name.toLowerCase() === name.toLowerCase()
     );
@@ -36,21 +37,15 @@ export default function PokemonGuess({ pokemonList }: Props) {
       (pokemon) => pokemon.name.toLowerCase() !== name.toLowerCase()
     );
 
-    setAvailable(newAvailable);
-    setHistory([selectedPokemon!, ...history]);
-  }
-
-  function newGame() {
-    setAvailable(pokemonList);
-    setHistory([]);
-    setChosen(getRandomPokemon(pokemonList));
+    updateAvailable(newAvailable);
+    updateHistory([selectedPokemon!, ...history]);
   }
 
   return (
     <section className="py-6 px-1 md:p-5 flex flex-col justify-center items-center gap-8 w-full">
       <h1 className="text-xl md:text-2xl">Who's that Pokémon?</h1>
 
-      <Input pokemonList={available} updateAvailable={updateAvailable} />
+      <Input pokemonList={available} updateAvailable={updateCurrentAvailable} />
 
       <History pokemonList={history} chosen={chosen} />
 
