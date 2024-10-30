@@ -30,7 +30,7 @@ export default function GuessInput({ pokemonList, updateAvailable }: Props) {
       .slice(0, 5);
 
     setPossibilities(possiblePokemon);
-  }, [pokemon]);
+  }, [pokemon, pokemonList]);
 
   function handleSubmit(pokemon: string) {
     updateAvailable(pokemon);
