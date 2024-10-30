@@ -5,8 +5,6 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import App from "./App.tsx";
 import "./index.css";
 
-import { ThemeProvider } from "@/providers/theme.tsx";
-
 const client = new ApolloClient({
   uri: "https://beta.pokeapi.co/graphql/v1beta/",
   cache: new InMemoryCache(),
@@ -15,9 +13,7 @@ const client = new ApolloClient({
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ApolloProvider client={client}>
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
+      <App />
     </ApolloProvider>
   </StrictMode>
 );
