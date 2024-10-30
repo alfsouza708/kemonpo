@@ -56,7 +56,7 @@ export default function GuessInput({ pokemonList, updateAvailable }: Props) {
             >
               <Input
                 placeholder="Guess the Pokémon..."
-                className="w-full text-center bg-zinc-950"
+                className="w-full text-center bg-popover"
               />
             </CommandPrimitive.Input>
           </PopoverPrimitive.Anchor>

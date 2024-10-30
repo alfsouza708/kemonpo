@@ -46,13 +46,15 @@ export default function GuessedPokemon({ chosen, guessed }: Props) {
   }
 
   return (
-    <div className="flex justify-start items-center gap-2 h-16 w-auto rounded-full bg-zinc-950 relative">
+    <div className="flex justify-start items-center gap-2 h-16 w-auto rounded-full bg-popover relative">
       <img
         src={guessed.sprite}
         alt={`${guessed.name}`}
         className="h-16 w-16 sm:h-20 sm:w-20"
       />
-      <p className="text-[8px] sm:text-sm w-32 md:w-48">{guessed.name}</p>
+      <p className="text-[8px] sm:text-sm w-32 md:w-48 text-primary">
+        {guessed.name}
+      </p>
 
       <GuessInfos pokemon={guessed} infos={infos} />
     </div>
