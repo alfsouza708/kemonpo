@@ -11,6 +11,13 @@ type State = {
   history: Pokemon[];
 };
 
+type Action = {
+  updateChosen: (chosen: State["chosen"]) => void;
+  updateHistory: (history: State["history"]) => void;
+  updateAvailable: (available: State["available"]) => void;
+  newGame: () => void;
+};
+
 const initialState = {
   chosen: getRandomPokemon(pokemonList),
   available: pokemonList,
@@ -18,7 +25,7 @@ const initialState = {
 };
 
 export const useGuessStore = create(
-  persist(
+  persist<State & Action>(
     (set) => ({
       chosen: initialState.chosen,
       available: initialState.available,
