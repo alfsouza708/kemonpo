@@ -17,7 +17,7 @@ export default function PokemonGuess() {
       (pokemon) => pokemon.name.toLowerCase() === name.toLowerCase()
     );
 
-    if (selectedPokemon === chosen) {
+    if (selectedPokemon?.id === chosen.id) {
       setOpen(true);
       return;
     }
