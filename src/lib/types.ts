@@ -7,6 +7,25 @@ type Pokemon = {
   typing: PossibleTypes[];
 };
 
+type PokemonData = {
+  id: number;
+  name: string;
+  height: number;
+  weight: number;
+  pokemon_v2_pokemonsprites: {
+    sprites: {
+      "official-artwork": {
+        front_default: string;
+      };
+    };
+  }[];
+  pokemon_v2_pokemontypes: {
+    pokemon_v2_type: {
+      name: PossibleTypes;
+    };
+  }[];
+};
+
 type Typing = "correct" | "incorrect" | "unavailable";
 
 type Infos = {
@@ -36,4 +55,4 @@ type PossibleTypes =
   | "steel"
   | "water";
 
-export type { Pokemon, Infos, Typing, PossibleTypes };
+export type { Pokemon, PokemonData, Infos, Typing, PossibleTypes };

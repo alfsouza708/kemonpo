@@ -1,6 +1,6 @@
-import { Pokemon } from "@/lib/types";
+import { Pokemon, PokemonData } from "@/lib/types";
 
-export function formatPokemonJSON(data: any): Pokemon {
+export function formatPokemonJSON(data: PokemonData): Pokemon {
   return {
     id: data.id,
     name: data.name[0].toUpperCase() + data.name.slice(1),
@@ -10,7 +10,7 @@ export function formatPokemonJSON(data: any): Pokemon {
       data.pokemon_v2_pokemonsprites[0].sprites["official-artwork"]
         .front_default,
     typing: data.pokemon_v2_pokemontypes.map(
-      (type: any) => type.pokemon_v2_type.name
+      (type) => type.pokemon_v2_type.name
     ),
   };
 }
