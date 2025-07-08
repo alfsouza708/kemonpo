@@ -1,7 +1,10 @@
+import { lazy, Suspense } from "react";
 import Header from "@/components/Header";
 import Settings from "@/components/Settings";
 
-import PokemonGuess from "@/components/pokemon-guess/PokemonGuess";
+const PokemonGuess = lazy(
+  () => import("@/components/pokemon-guess/PokemonGuess")
+);
 
 // import { useQuery } from "@apollo/client";
 
@@ -27,7 +30,13 @@ export default function App() {
 
       <Header />
 
-      <PokemonGuess />
+      <Suspense
+        fallback={
+          <h1 className="p-8 flex justify-center items-center">Loading...</h1>
+        }
+      >
+        <PokemonGuess />
+      </Suspense>
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import { useState } from "react";
 
+import Dialog from "@/components/pokemon-guess/GuessDialog";
 import Input from "@/components/pokemon-guess/GuessInput";
 import History from "@/components/pokemon-guess/History";
-import Dialog from "@/components/pokemon-guess/GuessDialog";
 
 import { useGuessStore } from "@/store/use-guess-store";
 
